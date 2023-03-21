@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 import store.unibly.web.market.Market;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -18,14 +19,18 @@ public class Product {
     private Integer id;
 
     @ManyToOne
+    @NotNull
     private Market market;
 
     @Column(length = 50, unique = true)
+    @NotNull
     private String name;
 
+    @NotNull
     private Integer price;
 
     @ColumnDefault("0")
+    @NotNull
     private Integer sale;
 
     private String mainImg; // 이미지 경로 저장
@@ -38,6 +43,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    @NotNull
     private LocalDateTime createDate;
 
     @Builder

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
@@ -15,6 +16,7 @@ public class Market {
     private Integer id;
 
     @Column(length = 50, unique = true)
+    @NotNull
     private String name;
 
     @Enumerated(EnumType.STRING)
