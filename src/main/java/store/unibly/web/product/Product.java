@@ -46,6 +46,8 @@ public class Product {
     @NotNull
     private LocalDateTime createDate;
 
+    // 찜한 사용자 정보 추가하기
+
     @Builder
     public Product(Market market, String name, Integer price, Integer sale,
                    String mainImg, String detailImg, String detailDesc,

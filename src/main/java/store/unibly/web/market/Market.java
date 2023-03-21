@@ -24,6 +24,8 @@ public class Market {
 
     private String logoImg; // 이미지 경로 저장
 
+    // 관리자 정보 추가하기
+
     @Builder
     public Market(String name, MarketType type, String logoImg){
         this.name=name;
