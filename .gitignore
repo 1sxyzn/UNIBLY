@@ -38,3 +38,6 @@ out/
 
 ### DATABASE ###
 *.db
+
+### CSS, IMG ###
+src/main/resources/static/

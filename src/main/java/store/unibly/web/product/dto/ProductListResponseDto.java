@@ -20,12 +20,12 @@ public class ProductListResponseDto {
 
     public ProductListResponseDto(Product entity){
         this.id=entity.getId();
-        this.market=getMarket();
-        this.name=getName();
-        this.price=getPrice();
-        this.sale=getSale();
-        this.mainImg=getMainImg();
-        this.category=getCategory();
-        this.createDate=getCreateDate();
+        this.market=entity.getMarket();
+        this.name=entity.getName();
+        this.price=entity.getPrice();
+        this.sale=entity.getSale();
+        this.mainImg=entity.getMainImg();
+        this.category=entity.getCategory();
+        this.createDate=entity.getCreateDate();
     }
 }

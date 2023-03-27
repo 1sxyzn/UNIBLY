@@ -12,7 +12,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String main(Model model){
-        model.addAttribute("product",productService.mainList());
+        model.addAttribute("products",productService.mainList());
         return "main";
     }
 }
