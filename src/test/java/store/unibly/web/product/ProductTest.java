@@ -44,4 +44,30 @@ public class ProductTest {
         List<Product> products = productRepository.findAll();
         assertThat(products.get(0).getName()).isEqualTo(name);
     }
+
+    @Test
+    public void 상품_데이터_추가2(){
+        List<Market> markets = marketRepository.findAll();
+
+        Market market = markets.get(0);
+        String name = "NIKE Air Max";
+        Integer price = Integer.valueOf("175200");
+        Integer sale = Integer.valueOf("0");
+        ProductCategory category = ProductCategory.valueOf("Shoes");
+        LocalDateTime createDate = LocalDateTime.now();
+
+        Product p1 = Product.builder()
+                .market(market)
+                .name(name)
+                .price(price)
+                .sale(sale)
+                .category(category)
+                .createDate(createDate)
+                .build();
+
+        productRepository.save(p1);
+
+        List<Product> products = productRepository.findAll();
+        assertThat(products.get(1).getName()).isEqualTo(name);
+    }
 }

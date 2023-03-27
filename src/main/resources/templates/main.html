@@ -42,7 +42,7 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder">
-                                    <span style="color: red"><span th:if="${product.sale != 0}" th:text="${product.sale}"></span>%</span>
+                                    <span th:if="${product.sale != 0}" style="color: red"><span th:text="${product.sale}"></span>%</span>
                                     <span th:text="${product.price * (100 - product.sale) / 100}"></span></h5>
                                 <b th:text="${product.market.name}"></b><div th:text="${product.name}"></div>
                             </div>
