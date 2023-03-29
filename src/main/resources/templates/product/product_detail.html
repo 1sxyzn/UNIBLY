@@ -1,4 +1,36 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
+    <!-- Header-->
+    <header class="text-light py-2" >
+        <div class="text-center">
+            <h3 class="lead fw-normal text-black mb-0 fw-bolder">상품정보</h3>
+        </div>
+    </header>
 
+    <div class="text-center">
+        <!--Product Detail-->
+        <img style="width: 610px" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+        <br><br>
+        <img style="width: 61px; border-radius: 50%" src="/img/img_ex1.jpg" alt="..." />
+        <b><span th:text="${product.market.name}"></span></b><br><hr style="color: lightgray">
+
+        <span th:text="${product.name}"></span><br>
+        <b>
+            <span th:if="${product.sale != 0}" style="color: red">
+                <span th:text="${product.sale}"></span>%
+            </span>
+            <span th:text="${product.price * (100 - product.sale) / 100}"></span>원
+        </b>
+        <del th:if="${product.sale != 0}" style="color: lightgray"><span th:text="${product.price}"></span>원</del>
+        <br><hr>
+
+        <!--Product Deatil Desc-->
+        <span th:text="${product.detailDesc}"></span><br><br>
+        <img style="width: 610px" src="/img/img_ex2.jpg" alt="..." />
+
+        <!--Product Reviews-->
+        <br><br><hr>
+        <h3 class="lead fw-normal text-black mb-0 fw-bolder">리뷰</h3><br>
+        <img style="width: 610px" src="/img/img_ex3.jpg" alt="..." />
+    </div>
 </div>
