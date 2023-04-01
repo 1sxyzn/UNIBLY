@@ -3,6 +3,8 @@ package store.unibly.web.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import store.unibly.web.market.MarketRepository;
+import store.unibly.web.market.MarketType;
 import store.unibly.web.product.dto.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final MarketRepository marketRepository;
 
     @Transactional(readOnly = true)
     public List<ProductListResponseDto> mainList(){
@@ -25,5 +28,12 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 존재하지 않습니다."));
         return new ProductDetailResponseDto(product);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductListResponseDto> marketType(MarketType type){
+        return this.productRepository.findByMarketTypeJpql(type).stream()
+                .map(product -> new ProductListResponseDto(product))
+                .collect(Collectors.toList());
     }
 }
