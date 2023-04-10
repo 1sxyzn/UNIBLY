@@ -30,14 +30,23 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("JPQL 사용해서 마켓 type별로 상품 조회하기")
-    public void marketTypeTest(){
+    public void productListByMarketTypeTest(){
         MarketType t1 = MarketType.valueOf("Brand");
-        List<ProductListResponseDto> p1 = productService.marketType(t1);
+        List<ProductListResponseDto> p1 = productService.productListByMarketType(t1);
         assertThat(p1.size()).isEqualTo(2);
         assertThat(p1.get(0).getSale()).isEqualTo(0);
 
         MarketType t2 = MarketType.valueOf("Shop");
-        List<ProductListResponseDto> p2 = productService.marketType(t2);
+        List<ProductListResponseDto> p2 = productService.productListByMarketType(t2);
         assertThat(p2.size()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("JPQL 사용해서 마켓 type별, 상품 category별로 상품 조회하기")
+    public void productListByCategoryTest(){
+        MarketType t1 = MarketType.valueOf("Brand");
+        ProductCategory c1 = ProductCategory.valueOf("Shoes");
+        List<ProductListResponseDto> p1 = productService.productListByCategory(t1, c1);
+        assertThat(p1.size()).isEqualTo(2);
     }
 }

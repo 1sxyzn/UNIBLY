@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import store.unibly.web.market.MarketRepository;
 import store.unibly.web.market.MarketType;
 import store.unibly.web.product.dto.*;
 
@@ -31,8 +30,15 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductListResponseDto> marketType(MarketType type){
+    public List<ProductListResponseDto> productListByMarketType(MarketType type){
         return this.productRepository.findByMarketTypeJpql(type).stream()
+                .map(product -> new ProductListResponseDto(product))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductListResponseDto> productListByCategory(MarketType type, ProductCategory category){
+        return this.productRepository.findByCategoryJpql(type, category).stream()
                 .map(product -> new ProductListResponseDto(product))
                 .collect(Collectors.toList());
     }

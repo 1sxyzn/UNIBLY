@@ -10,4 +10,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p from Product p where p.market.type = :type order by p.id DESC")
     List<Product> findByMarketTypeJpql(@Param("type") MarketType type);
+
+    @Query("select p from Product p where p.market.type = :type and p.category = :category order by p.id DESC")
+    List<Product> findByCategoryJpql(@Param("type") MarketType type, @Param("category") ProductCategory category);
 }

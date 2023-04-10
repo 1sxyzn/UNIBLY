@@ -1,1 +1,55 @@
 <!--Type 별 모든 상품과 선택할 수 있는 Categoty 존재-->
+<!-- Outer, Top, Set, Pants, Skirt, Training, Bag,
+Shoes, Accessory, Homeware, Jewelry, Underwear, Bigsize, Beachwear -->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5" align="center">
+            <a th:href="@{|/market/${type}/Outer|}"><img src="/img/productCategory/Outer.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Top|}"><img src="/img/productCategory/Top.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Set|}"><img src="/img/productCategory/Set.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Pants|}"><img src="/img/productCategory/Pants.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Skirt|}"><img src="/img/productCategory/Skirt.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Training|}"><img src="/img/productCategory/Training.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Bag|}"><img src="/img/productCategory/Bag.jpg" class="rounded-circle" width=10%></a>
+            <br><br>
+            <a th:href="@{|/market/${type}/Shoes|}"><img src="/img/productCategory/Shoes.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Accessory|}"><img src="/img/productCategory/Accessory.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Homeware|}"><img src="/img/productCategory/Homeware.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Jewelry|}"><img src="/img/productCategory/Jewelry.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Underwear|}"><img src="/img/productCategory/Underwear.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Bigsize|}"><img src="/img/productCategory/Bigsize.jpg" class="rounded-circle" width=10%></a>
+            <a th:href="@{|/market/${type}/Beachwear|}"><img src="/img/productCategory/Beachwear.jpg" class="rounded-circle" width=10%></a>
+            <br>
+            <br><br><hr><br><br>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <!-- Start Product loop-->
+                <tr th:each="product : ${products}">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- 찜 badge-->
+                            <div class="d-flex justify-content-center small text-warning mb-2 position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                <div class="bi-suit-heart"  style=" color: red"></div>
+                            </div>
+                            <!-- Product image-->
+                            <a th:href="@{|/product/${product.id}|}">
+                                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            </a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">
+                                        <span th:if="${product.sale != 0}" style="color: red"><span th:text="${product.sale}"></span>%</span>
+                                        <span th:text="${product.price * (100 - product.sale) / 100}"></span></h5>
+                                    <b th:text="${product.market.name}"></b><div th:text="${product.name}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <!-- End Product loop-->
+            </div>
+        </div>
+    </section>
+</div>

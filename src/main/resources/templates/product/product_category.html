@@ -1,1 +1,41 @@
 <!--Type 별 + Category 별-->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <p>
+        <h2 align="center">
+            <b th:text="${category}"></b>
+        </h2>
+    </p>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <!-- Start Product loop-->
+                <tr th:each="product : ${products}">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- 찜 badge-->
+                            <div class="d-flex justify-content-center small text-warning mb-2 position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                <div class="bi-suit-heart"  style=" color: red"></div>
+                            </div>
+                            <!-- Product image-->
+                            <a th:href="@{|/product/${product.id}|}">
+                                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            </a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">
+                                        <span th:if="${product.sale != 0}" style="color: red"><span th:text="${product.sale}"></span>%</span>
+                                        <span th:text="${product.price * (100 - product.sale) / 100}"></span></h5>
+                                    <b th:text="${product.market.name}"></b><div th:text="${product.name}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <!-- End Product loop-->
+            </div>
+        </div>
+    </section>
+</div>

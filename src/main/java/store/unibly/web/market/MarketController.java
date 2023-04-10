@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import store.unibly.web.product.ProductService;
+import store.unibly.web.product.*;
 
 @RequestMapping("/market")
 @RequiredArgsConstructor
@@ -16,13 +16,15 @@ public class MarketController {
 
     @GetMapping(value = "/{marketType}")
     public String marketType(Model model, @PathVariable("marketType") String type){
-        model.addAttribute("products", this.productService.marketType(MarketType.valueOf(type)));
+        model.addAttribute("products", this.productService.productListByMarketType(MarketType.valueOf(type)));
+        model.addAttribute("type", type);
         return "market/market_type";
     }
 
     @GetMapping(value = "/{marketType}/{category}")
-    public String productListByMarketType(Model model, @PathVariable("marketType") String type, @PathVariable("category") String category){
-        // model.addAttribute("products",productService.productListByMarket(MarketType.valueOf(type), ProductCategory.valueOf(category)));
+    public String category(Model model, @PathVariable("marketType") String type, @PathVariable("category") String category){
+        model.addAttribute("products",productService.productListByCategory(MarketType.valueOf(type), ProductCategory.valueOf(category)));
+        model.addAttribute("category", category);
         return "product/product_category";
     }
 }
