@@ -8,6 +8,6 @@ import store.unibly.web.market.MarketType;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @Query("select p from Product p where p.market.type = :type")
+    @Query("select p from Product p where p.market.type = :type order by p.id DESC")
     List<Product> findByMarketTypeJpql(@Param("type") MarketType type);
 }

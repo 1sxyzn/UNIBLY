@@ -34,6 +34,7 @@ class ProductServiceTest {
         MarketType t1 = MarketType.valueOf("Brand");
         List<ProductListResponseDto> p1 = productService.marketType(t1);
         assertThat(p1.size()).isEqualTo(2);
+        assertThat(p1.get(0).getSale()).isEqualTo(0);
 
         MarketType t2 = MarketType.valueOf("Shop");
         List<ProductListResponseDto> p2 = productService.marketType(t2);

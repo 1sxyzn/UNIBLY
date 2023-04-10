@@ -1,6 +1,7 @@
 package store.unibly.web.product;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.unibly.web.market.MarketRepository;
@@ -14,11 +15,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-    private final MarketRepository marketRepository;
 
     @Transactional(readOnly = true)
     public List<ProductListResponseDto> mainList(){
-        return this.productRepository.findAll().stream()
+        return this.productRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).stream()
                 .map(product -> new ProductListResponseDto(product))
                 .collect(Collectors.toList());
     }
