@@ -12,19 +12,12 @@ import store.unibly.web.product.*;
 @RequiredArgsConstructor
 @Controller
 public class MarketController {
-    private final ProductService productService;
+    private final MarketService marketService;
 
-    @GetMapping(value = "/{marketType}")
-    public String marketType(Model model, @PathVariable("marketType") String type){
-        model.addAttribute("products", this.productService.productListByMarketType(MarketType.valueOf(type)));
+    @GetMapping(value = "/list/{marketType}")
+    public String marketList(Model model, @PathVariable("marketType") String type){
+        model.addAttribute("markets",marketService.marketListByType(MarketType.valueOf(type)));
         model.addAttribute("type", type);
-        return "market/market_type";
-    }
-
-    @GetMapping(value = "/{marketType}/{category}")
-    public String category(Model model, @PathVariable("marketType") String type, @PathVariable("category") String category){
-        model.addAttribute("products",productService.productListByCategory(MarketType.valueOf(type), ProductCategory.valueOf(category)));
-        model.addAttribute("category", category);
-        return "product/product_category";
+        return "market/market_list";
     }
 }

@@ -11,9 +11,10 @@
         <!--Product Detail-->
         <img style="width: 610px" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
         <br><br>
-        <img style="width: 61px; border-radius: 50%" src="/img/img_ex1.jpg" alt="..." />
-        <b><span th:text="${product.market.name}"></span></b><br><hr style="color: lightgray">
-
+        <a th:href="@{|/market/${product.market.id}|}" style="text-decoration-line: none; color: black">
+            <img style="width: 61px; border-radius: 50%" th:src="${product.market.logoImg}" alt="..." />
+            <b><span th:text="${product.market.name}"></span></b><br><hr style="color: lightgray">
+        </a>
         <span th:text="${product.name}"></span><br>
         <b>
             <span th:if="${product.sale != 0}" style="color: red">

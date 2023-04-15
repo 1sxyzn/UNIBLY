@@ -1,0 +1,48 @@
+<!--Type 별 모든 상품과 선택할 수 있는 Categoty 존재-->
+<!-- Outer, Top, Set, Pants, Skirt, Training, Bag,
+Shoes, Accessory, Homeware, Jewelry, Underwear, Bigsize, Beachwear -->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+        <p>
+        <h3 align="center">
+            <b>
+                <span th:if="${type == 'Shop'}">
+                        쇼핑몰&nbsp;
+                    <a th:href="@{|/market/list/Celeb|}" style="text-decoration-line: none; color: lightgray">
+                        셀럽&nbsp;</a>
+                    <a th:href="@{|/market/list/Brand|}" style="text-decoration-line: none; color: lightgray">
+                        브랜드</a>
+                </span>
+
+                <span th:if="${type == 'Celeb'}">
+                    <a th:href="@{|/market/list/Shop|}" style="text-decoration-line: none; color: lightgray">
+                        쇼핑몰&nbsp;</a>
+                        셀럽&nbsp;
+                    <a th:href="@{|/market/list/Brand|}" style="text-decoration-line: none; color: lightgray">
+                        브랜드</a>
+                </span>
+
+                <span th:if="${type == 'Brand'}">
+                    <a th:href="@{|/market/list/Shop|}" style="text-decoration-line: none; color: lightgray">
+                        쇼핑몰&nbsp;</a>
+                    <a th:href="@{|/market/list/Celeb|}" style="text-decoration-line: none; color: lightgray">
+                        셀럽&nbsp;</a>
+                        브랜드
+                </span>
+            </b>
+        </h3>
+        </p>
+
+    <div class="container px-4 px-lg-5 mt-5">
+        <!-- 타입 별 마켓 목록 -->
+        <hr style="color: lightgray">
+        <tr th:each="market, marketState : ${markets}">
+            <b th:text="${marketState.index}+1" style="color:orangered; font-size:1.5em;"></b>&nbsp;&nbsp;
+            <a th:href="@{|/market/${market.id}|}" style="text-decoration-line: none; color: black">
+                <img style="width: 61px; border-radius: 50%" th:src="${market.logoImg}" alt="..." />
+                <b>&nbsp;<span th:text="${market.name}"></span></b><br>
+            </a>
+            <hr>
+        </tr>
+    </div>
+</div>
