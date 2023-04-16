@@ -1,0 +1,53 @@
+<html layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+
+<!-- Header-->
+<div class="container px-4 px-lg-5 mt-5">
+    <img style="width: 61px; border-radius: 50%" th:src="${market.logoImg}" alt="..." />
+    &nbsp;&nbsp;<b th:text="${market.name}"></b>
+    <span class="badge badge-secondary" style="color: black;">#
+        <span th:text="${market.type}"></span>
+    </span>
+    <hr style="color: gray">
+
+    <div>
+    <!--Product List -->
+        <br>
+        <h3 class="lead fw-normal text-black mb-0 fw-bolder">상품&nbsp;
+            <span style="color: gray" th:text="${products.size()}"></span>
+        </h3>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <!-- Start Product loop-->
+                    <tr th:each="product : ${products}">
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- 찜 badge-->
+                                <div class="d-flex justify-content-center small text-warning mb-2 position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                    <div class="bi-suit-heart"  style=" color: red"></div>
+                                </div>
+                                <!-- Product image-->
+                                <a th:href="@{|/product/${product.id}|}">
+                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                </a>
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h5 class="fw-bolder">
+                                            <span th:if="${product.sale != 0}" style="color: red"><span th:text="${product.sale}"></span>%</span>
+                                            <span th:text="${product.price * (100 - product.sale) / 100}"></span></h5>
+                                        <b th:text="${product.market.name}"></b><div th:text="${product.name}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                    <!-- End Product loop-->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</div>

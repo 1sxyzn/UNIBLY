@@ -42,4 +42,11 @@ public class ProductService {
                 .map(product -> new ProductListResponseDto(product))
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<ProductListResponseDto> productListByMarketId(Integer id){
+        return this.productRepository.findByMarketIdJpql(id).stream()
+                .map(product -> new ProductListResponseDto(product))
+                .collect(Collectors.toList());
+    }
 }
