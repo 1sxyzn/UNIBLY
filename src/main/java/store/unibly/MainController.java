@@ -1,4 +1,4 @@
-package store.unibly.web;
+package store.unibly;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

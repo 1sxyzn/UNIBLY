@@ -30,6 +30,8 @@ public class Member {
 
     private String address;
 
+    // role 추후 추가하기
+
     @Builder
     public Member(String loginId, String password, String name, String phone, String address){
         this.loginId=loginId;
