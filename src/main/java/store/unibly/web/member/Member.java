@@ -3,7 +3,6 @@ package store.unibly.web.member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -30,14 +29,17 @@ public class Member {
 
     private String address;
 
-    // role 추후 추가하기
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;
 
     @Builder
-    public Member(String loginId, String password, String name, String phone, String address){
+    public Member(String loginId, String password, String name, String phone, String address, MemberRole role){
         this.loginId=loginId;
         this.password=password;
         this.name=name;
         this.phone=phone;
         this.address=address;
+        this.role=role;
+        this.level=MemberLevel.WHITE;
     }
 }
