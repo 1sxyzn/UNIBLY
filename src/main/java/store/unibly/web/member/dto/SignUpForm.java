@@ -1,12 +1,14 @@
 package store.unibly.web.member.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import store.unibly.web.member.MemberRole;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Getter
+@Setter
 public class SignUpForm {
     @Size(min=5, max=20)
     @NotEmpty(message = "ID를 입력해 주세요.")
@@ -17,7 +19,6 @@ public class SignUpForm {
 
     @NotEmpty(message = "비밀번호를 다시 한번 입력해 주세요.")
     private String password2;
-
 
     @Size(min=1, max=20)
     @NotEmpty(message = "이름을 입력해 주세요.")

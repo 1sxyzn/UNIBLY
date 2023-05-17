@@ -23,6 +23,7 @@ public class MemberController {
     @PostMapping("/signup")
     public String signUp(@Valid SignUpForm signUpForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
             return "member/signup";
         }
 
