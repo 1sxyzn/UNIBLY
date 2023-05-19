@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import store.unibly.web.member.dto.SignUpForm;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.Valid;
 
@@ -33,7 +34,19 @@ public class MemberController {
             return "member/signup";
         }
 
-        memberService.signUp(signUpForm);
+        try{
+            memberService.signUp(signUpForm);
+        }
+        catch (DataIntegrityViolationException e){ // SQL 혹은 DATA 문제 ex) 중복되면 안되는 정보가 중복 등록 되었을 때
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+            return "member/signup";
+        }
+        catch (Exception e) { // 그 외의 다른 오류일 경우
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "member/signup";
+        }
 
         return "redirect:/";
     }
