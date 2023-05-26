@@ -23,7 +23,12 @@ public class SecurityConfig {
             and()
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)); // h2 콘솔 frame 띄우기 위함
+                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)) // h2 콘솔 frame 띄우기 위한
+            .and()
+                .formLogin()
+                .loginPage("/login") // 로그인 URL
+                .defaultSuccessUrl("/") // 로그인 성공시 URL
+        ;
         return http.build();
     }
 
