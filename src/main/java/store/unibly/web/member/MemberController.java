@@ -53,6 +53,6 @@ public class MemberController {
 
     @GetMapping("/login") // 실제 로직이 일어나는 Post는 스프링 시큐리티가 처리
     public String login(){
-        return "login";
+        return "member/login";
     }
 }
