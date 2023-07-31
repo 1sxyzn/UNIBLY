@@ -31,6 +31,11 @@ public class SecurityConfig {
                 .loginPage("/login") // 로그인 URL
                 .defaultSuccessUrl("/") // 로그인 성공시 URL
                 .usernameParameter("loginId") // loadUserByUsername메소드를 loginId기반으로 변경
+            .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true) // 세션 지우기
         ;
         return http.build();
     }
