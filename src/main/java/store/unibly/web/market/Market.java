@@ -3,6 +3,7 @@ package store.unibly.web.market;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import store.unibly.web.member.Member;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,12 +25,14 @@ public class Market {
 
     private String logoImg; // 이미지 경로 저장
 
-    // 관리자 정보 추가하기
+    @ManyToOne
+    private Member manager;
 
     @Builder
-    public Market(String name, MarketType type, String logoImg){
+    public Market(String name, MarketType type, String logoImg, Member manager){
         this.name=name;
         this.type=type;
         this.logoImg=logoImg;
+        this.manager=manager;
     }
 }
