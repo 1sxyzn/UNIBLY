@@ -26,10 +26,10 @@ public class AdminService {
         Optional<Member> member = this.adminRepository.findById(loginId);
         if(member.isPresent()){
             Member data = member.get();
-            if(data.getRole() == MemberRole.valueOf("ROLE_MANAGER")){
+            if(data.getRole() == MemberRole.valueOf("ROLE_ADMIN")){
                 return data;
             }
-            else { throw new  DataNotFoundException("member is not manager"); }
+            else { throw new  DataNotFoundException("No access permission"); }
         }
         else { throw new DataNotFoundException("member not found"); }
     }

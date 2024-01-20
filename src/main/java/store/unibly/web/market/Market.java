@@ -26,13 +26,13 @@ public class Market {
     private String logoImg; // 이미지 경로 저장
 
     @ManyToOne
-    private Member manager;
+    private Member admin;
 
     @Builder
-    public Market(String name, MarketType type, String logoImg, Member manager){
+    public Market(String name, MarketType type, String logoImg, Member admin){
         this.name=name;
         this.type=type;
         this.logoImg=logoImg;
-        this.manager=manager;
+        this.admin=admin;
     }
 }

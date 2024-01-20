@@ -17,8 +17,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests().requestMatchers(
-                new AntPathRequestMatcher("/**")).permitAll() // back-office 권한 부여 추후 추가하기
+        http.authorizeHttpRequests()
+                .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
+                .antMatchers("/**").permitAll()
             .and()
                 .csrf().ignoringRequestMatchers(
                         new AntPathRequestMatcher("/h2/**")). // h2 콘솔만 CSRF 검증을 안하고 예외 처리 (h2 콘솔은 CSRF 토큰을 발행하는 기능이 없으므로)

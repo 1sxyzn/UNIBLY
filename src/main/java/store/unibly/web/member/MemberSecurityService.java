@@ -28,8 +28,8 @@ public class MemberSecurityService implements UserDetailsService {
         }
         Member member = memberEx.get();
         List<GrantedAuthority> auth = new ArrayList<>();
-        if("ROLE_MANAGER".equals(member.getRole())){
-            auth.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        if("ROLE_ADMIN".equals(member.getRole())){
+            auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         else{
             auth.add(new SimpleGrantedAuthority("ROLE_USER"));
