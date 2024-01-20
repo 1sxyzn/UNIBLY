@@ -13,6 +13,6 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String adminProducts(Model model){
-        return "/admin/admin";
+        return "admin/admin";
     }
 }

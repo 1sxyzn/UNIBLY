@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import store.unibly.web.member.MemberRole;
 
 @RequiredArgsConstructor
 @Service
@@ -28,7 +29,7 @@ public class MemberSecurityService implements UserDetailsService {
         }
         Member member = memberEx.get();
         List<GrantedAuthority> auth = new ArrayList<>();
-        if("ROLE_ADMIN".equals(member.getRole())){
+        if(MemberRole.ROLE_ADMIN.equals(member.getRole())){
             auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         else{
